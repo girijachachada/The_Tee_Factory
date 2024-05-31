@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - T-Shirt Store</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <style>
+        .filters {
+            margin-bottom: 20px;
+        }
+        .filters label {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="name">The Tee Factory</h1>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active"><a href="products.html">Products</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <form class="navbar-form navbar-left">
+                                <div class="form-group">
+                                    <input type="text" id="search-input" class="form-control" placeholder="Search">
+                                </div>
+                                <button type="button" id="search-button" class="btn btn-default">Search</button>
+                            </form>
+                        </li>
+                        <li><a href="cart.html"><span class="glyphicon glyphicon-shopping-cart"></span> <span id="cart-count">0</span></a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main class="container">
+        <div class="row">
+            <div class="col-sm-3 filters">
+                <h3>Filters</h3>
+                <h4>Colour</h4>
+                <label><input type="checkbox" class="filter-color" value="Green"> Green</label>
+                <label><input type="checkbox" class="filter-color" value="Blue"> Blue</label>
+                <label><input type="checkbox" class="filter-color" value="Red"> Red</label>
+                <label><input type="checkbox" class="filter-color" value="Pink"> Pink</label>
+                <label><input type="checkbox" class="filter-color" value="White"> White</label>
+                <label><input type="checkbox" class="filter-color" value="Black"> Black</label>
+                
+                <h4>Gender</h4>
+                <label><input type="checkbox" class="filter-gender" value="Men"> Men</label>
+                <label><input type="checkbox" class="filter-gender" value="Women"> Women</label>
+                
+                <h4>Price</h4>
+                <label><input type="checkbox" class="filter-price" value="0-250">&#8377;0 - 500</label>
+                <label><input type="checkbox" class="filter-price" value="251-450">&#8377;501 - 2000</label>
+                <label><input type="checkbox" class="filter-price" value="451-">&#8377; 2000+</label>
+                
+                <h4>Type</h4>
+                <label><input type="checkbox" class="filter-type" value="Polo"> Polo</label>
+                <label><input type="checkbox" class="filter-type" value="T Shirt"> T-Shirt</label>
+                <label><input type="checkbox" class="filter-type" value="Top"> Top</label>
+            </div>
+            <div class="col-sm-9">
+                <div class="row" id="product-list"></div>
+            </div>
+        </div>
+    </main>
+
+    <br>
+    <div class="footer-dark">
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>Products</h3>
+                        <ul>
+                            <li><a href="#">T-Shirt</a></li>
+                            <li><a href="#">Polo</a></li>
+                            <li><a href="#">Top</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-6 col-md-3 item">
+                        <h3>About</h3>
+                        <ul>
+                            <li><a href="#">Company</a></li>
+                            <li><a href="#">Team</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
+                </div>
+                <p class="copyright">Company Name © 2018</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
