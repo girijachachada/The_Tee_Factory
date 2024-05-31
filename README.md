@@ -1,7 +1,10 @@
 # The Tee Factory 👕🏭
 
 Welcome to The Tee Factory! This web application provides a simple and intuitive platform for customers to browse, select, and purchase t-shirts online. Whether you're looking for a trendy graphic tee or a classic polo, we've got you covered.
-
+## Technologies Used 💻
+![HTML Badge](https://img.shields.io/badge/HTML-orange)
+![CSS Badge](https://img.shields.io/badge/CSS-blue)
+![JavaScript Badge](https://img.shields.io/badge/JavaScript-yellow)
 ## System Features 🚀
 
 ### 1. Browse Catalog 📚
@@ -47,10 +50,6 @@ Welcome to The Tee Factory! This web application provides a simple and intuitive
 - Appears as a  window displaying the selected items, quantities, and total amount.
 - Allows users to adjust quantities or remove items before proceeding to checkout.
 
-## Technologies Used 💻
-- ![HTML Badge](https://img.shields.io/badge/Language-HTML-orange)
-- ![CSS Badge](https://img.shields.io/badge/Language-CSS-blue)
-- ![JavaScript Badge](https://img.shields.io/badge/Language-JavaScript-yellow)
 
 ## How to Run ▶️
 1. Clone this repository to your local machine.
