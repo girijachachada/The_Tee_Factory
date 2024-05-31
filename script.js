@@ -104,7 +104,11 @@ document.addEventListener("DOMContentLoaded", function() {
             const genderMatch = selectedGenders.length ? selectedGenders.includes(product.gender) : true;
             const priceMatch = selectedPrices.length ? selectedPrices.some(priceRange => {
                 const [min, max] = priceRange.split('-').map(Number);
-                return product.price >= min && (isNaN(max) || product.price <= max);
+                if (isNaN(max)) {
+                    return product.price >= min;
+                } else {
+                    return product.price >= min && product.price <= max;
+                }
             }) : true;
             const typeMatch = selectedTypes.length ? selectedTypes.includes(product.type) : true;
 
