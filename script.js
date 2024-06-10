@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
     const products = [
-        { id: 1, name: "Green Polo", color: "Green", type: "Polo", price: 320, quantity: 10, image: "images/green-polo.jpg", gender: "Men" },
-        { id: 2, name: "Blue T-Shirt", color: "Blue", type: "T Shirt", price: 950, quantity: 5, image: "images/blue-tshirt.jpg", gender: "Men" },
+        { id: 1, name: "Green Polo", color: "Green", type: "Polo", price: 320, quantity: 0, image: "images/green-polo.jpg", gender: "Men" },
+        { id: 2, name: "Blue T-Shirt", color: "Blue", type: "T Shirt", price: 950, quantity: 0, image: "images/blue-tshirt.jpg", gender: "Men" },
         { id: 3, name: "Red Tank Top", color: "Red", type: "Top", price: 1800, quantity: 8, image: "images/red-tanktop.jpg", gender: "Women" },
         { id: 4, name: "White T-Shirt", color: "White", type: "T Shirt", price: 1160, quantity: 9, image: "images/white-tshirt.jpg", gender: "Men" },
         { id: 5, name: "Black T-Shirt", color: "Black", type: "T Shirt", price: 250, quantity: 19, image: "images/black-tshirt.jpg", gender: "Men" },
@@ -34,10 +34,16 @@ document.addEventListener("DOMContentLoaded", function() {
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p>Price: &#8377; ${product.price}</p>
-                <button class="btn btn-primary add-to-cart-btn" data-id="${product.id}">Add to Cart</button>
             `;
+            if(product.quantity){
+                card.innerHTML+=`<button class="btn btn-primary add-to-cart-btn" data-id="${product.id}">Add to Cart</button>`
+            }
+            else{
+                card.innerHTML+=`<button disabled class="btn btn-danger" data-id="${product.id}">Out of Stock</button>`
+            }
             productList.appendChild(card);
         });
+
     }
 
     // Function to add product to cart
@@ -52,7 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     alert('Sorry, no more stock available!');
                 }
             } else {
-                cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+                if (product.quantity!=0)
+                    cart.push({ id: product.id, name: product.name, price: product.price, quantity: 1 });
+                else {
+                    alert('Sorry, no more stock available!');
+                }
             }
             updateCartCount();
             localStorage.setItem('cart', JSON.stringify(cart));
@@ -98,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const selectedGenders = Array.from(document.querySelectorAll(".filter-gender:checked")).map(cb => cb.value);
         const selectedPrices = Array.from(document.querySelectorAll(".filter-price:checked")).map(cb => cb.value);
         const selectedTypes = Array.from(document.querySelectorAll(".filter-type:checked")).map(cb => cb.value);
+        const selectedAvailability = Array.from(document.querySelectorAll(".filter-availability:checked")).map(cb => cb.value);
 
         const filteredProducts = products.filter(product => {
             const colorMatch = selectedColors.length ? selectedColors.includes(product.color) : true;
@@ -111,8 +122,9 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             }) : true;
             const typeMatch = selectedTypes.length ? selectedTypes.includes(product.type) : true;
-
-            return colorMatch && genderMatch && priceMatch && typeMatch;
+            const availabilityMatch = selectedAvailability.length ? (selectedAvailability.includes("Instock") && product.quantity>0) || (selectedAvailability.includes("Outofstock") && product.quantity==0):true;
+            
+            return colorMatch && genderMatch && priceMatch && typeMatch && availabilityMatch;
         });
 
         displayProducts(filteredProducts);

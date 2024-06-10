@@ -18,13 +18,43 @@ document.addEventListener("DOMContentLoaded", function() {
         { id: 15, name: "Grey Top", color: "Grey", type: "Top", price: 1900, quantity: 8, image: "images/grey-top.jpg", gender: "Women" },
     ];
 
+    const discountCodes = [
+        { code: "10OFF", type: "percent", value: 10 },
+        { code: "100OFF", type: "amount", value: 100 }
+    ];
+
     const cartContent = document.getElementById("cart-content");
     const cartCountElement = document.getElementById('cart-count');
+    const discountInput = document.getElementById('discount');
+    const applyDiscountBtn = document.getElementById('discount-btn');
+    const totalDisplay = document.createElement("div");
 
     function updateCartCount() {
         const totalCount = cart.reduce((acc, item) => acc + item.quantity, 0);
         cartCountElement.innerText = totalCount;
     }
+
+    function applyDiscount(totalAmount) {
+        const discount = discountInput.value;
+        const code = discountCodes.find(code => code.code === discount);
+
+        if (code) {
+            if (code.type === "amount") {
+                totalAmount -= code.value;
+            } else if (code.type === "percent") {
+                totalAmount -= (totalAmount * code.value) / 100;
+            }
+            alert(`Discount applied! New total: ₹${totalAmount}`);
+        } else {
+            alert("Invalid discount code.");
+        }
+        totalDisplay.innerHTML = `<h3 class="total-price-txt">Total : &#8377;${totalAmount}</h3>`;
+    }
+
+    applyDiscountBtn.addEventListener("click", function() {
+        let totalAmount = cart.reduce((total, item) => total + item.price * item.quantity, 0);
+        applyDiscount(totalAmount);
+    });
 
     function displayCart() {
         cartContent.innerHTML = "";
@@ -76,7 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
             `;
             cartContent.appendChild(cartItem);
         });
-        const totalDisplay = document.createElement("div");
         totalDisplay.innerHTML = `<h3 class="total-price-txt">Total : &#8377;${totalAmount}</h3>`;
         cartContent.appendChild(totalDisplay);
     }
